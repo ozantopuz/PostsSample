@@ -1,8 +1,6 @@
 package com.app.postssample.core.di.module
 
-import com.app.postssample.data.Api
-import com.app.postssample.data.Service
-import com.app.postssample.data.ServiceImpl
+import com.app.postssample.data.service.PostApi
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -28,7 +26,7 @@ class NetworkModule{
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Api.BASE_URL)
+            .baseUrl(PostApi.BASE_URL)
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
@@ -37,9 +35,5 @@ class NetworkModule{
 
     @Provides
     @Singleton
-    fun provideNetworkApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
-
-    @Provides
-    @Singleton
-    fun provideNetwork(api: Api): Service = ServiceImpl(api)
+    fun provideNetworkApi(retrofit: Retrofit): PostApi = retrofit.create(PostApi::class.java)
 }
