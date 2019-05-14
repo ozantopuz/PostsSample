@@ -10,8 +10,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.PublishSubject
 
-abstract class BaseViewModel<I : MviIntent, S : MviViewState, A : MviAction, R : MviResult> : ViewModel(),
-    MviViewModel<I, S> {
+abstract class BaseViewModel<I : MviIntent, S : MviViewState, A : MviAction, R : MviResult> : ViewModel(), MviViewModel<I, S> {
 
     private val disposables: CompositeDisposable = CompositeDisposable()
     private val intentsSubject: PublishSubject<I> = PublishSubject.create()
