@@ -1,6 +1,8 @@
 package com.app.postssample.core.di.module
 
 import com.app.postssample.data.service.PostApi
+import com.app.postssample.data.service.PostService
+import com.app.postssample.data.service.PostServiceImpl
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -36,4 +38,8 @@ class NetworkModule{
     @Provides
     @Singleton
     fun provideNetworkApi(retrofit: Retrofit): PostApi = retrofit.create(PostApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideNetwork(postApi: PostApi): PostService = PostServiceImpl(postApi)
 }
