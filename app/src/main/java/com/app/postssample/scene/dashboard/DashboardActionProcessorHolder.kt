@@ -14,14 +14,14 @@ class DashboardActionProcessorHolder @Inject constructor(private val repository:
         return ObservableTransformer { action ->
             action.publish { shared ->
                 Observable.merge(
-                    shared.ofType(DashboardAction.LoadDashboardAction::class.java).compose(loadPost()),
-                    shared.ofType(DashboardAction.ClickAction::class.java).compose(shareArticle())
+                    shared.ofType(DashboardAction.LoadDashboardAction::class.java).compose(loadPosts()),
+                    shared.ofType(DashboardAction.ClickAction::class.java).compose(clickPost())
                 )
             }
         }
     }
 
-    private fun shareArticle(): ObservableTransformer<DashboardAction.ClickAction, DashboardResult.ClickResult> {
+    private fun clickPost(): ObservableTransformer<DashboardAction.ClickAction, DashboardResult.ClickResult> {
         return ObservableTransformer { action ->
             action.flatMap {
                 Observable.just(DashboardResult.ClickResult(it.post))
@@ -29,7 +29,7 @@ class DashboardActionProcessorHolder @Inject constructor(private val repository:
         }
     }
 
-    private fun loadPost(): ObservableTransformer<DashboardAction.LoadDashboardAction, DashboardResult.LoadDashboardResult> {
+    private fun loadPosts(): ObservableTransformer<DashboardAction.LoadDashboardAction, DashboardResult.LoadDashboardResult> {
         return ObservableTransformer { action ->
             action.flatMap {
                 repository.getPosts()

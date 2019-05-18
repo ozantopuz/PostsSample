@@ -9,7 +9,7 @@ import com.app.postssample.R
 import com.app.postssample.data.entity.Post
 import kotlinx.android.synthetic.main.layout_item_post.view.*
 
-class PostAdapter(private val dataSource: List<Post>) : RecyclerView.Adapter<ViewHolder>() {
+class PostAdapter(private val dataSource: List<Post>, private val click:(Post)->Unit) : RecyclerView.Adapter<ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,6 +20,7 @@ class PostAdapter(private val dataSource: List<Post>) : RecyclerView.Adapter<Vie
         with(dataSource[position]){
             holder.titleTextView?.text = title
             holder.bodyTextView?.text = body
+            holder.itemView.setOnClickListener { click.invoke(this) }
         }
     }
 

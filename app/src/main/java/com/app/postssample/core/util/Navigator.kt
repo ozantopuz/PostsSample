@@ -3,15 +3,15 @@ package com.app.postssample.core.util
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import com.app.postssample.core.extension.ignoreNull
+import com.app.postssample.data.entity.Post
 
 object Navigator{
 
     inline fun <reified T : Activity> Context.open() = startActivity(Intent(this, T::class.java))
 
-    inline fun <reified T : Activity> Context.openWithId(id : Int?) {
+    inline fun <reified T : Activity> Context.openWithPost(post : Post) {
         val intent = Intent(this, T::class.java)
-        intent.putExtra("id", id.ignoreNull())
+        intent.putExtra("post", post)
         startActivity(intent)
     }
 
