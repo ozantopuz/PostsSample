@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.app.postssample.R
 import com.app.postssample.core.base.BaseActivity
 import com.app.postssample.core.extension.ignoreNull
+import com.app.postssample.core.extension.toast
 import com.app.postssample.core.mvi.MviView
 import com.app.postssample.core.util.Constants.AVATAR_URL
 import com.app.postssample.data.entity.Post
@@ -44,6 +45,8 @@ class DetailActivity : BaseActivity(), MviView<DetailIntent, DetailViewState> {
     override fun render(state: DetailViewState) {
         with(state) {
             progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+
+            if (errorMessage.isNotEmpty()) toast(errorMessage)
 
             if (users.isNotEmpty()) {
                 val user = users.find { it.id == post?.userId }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.postssample.R
 import com.app.postssample.core.base.BaseActivity
+import com.app.postssample.core.extension.toast
 import com.app.postssample.core.mvi.MviView
 import com.app.postssample.core.util.Navigator.openWithPost
 import com.app.postssample.scene.detail.DetailActivity
@@ -42,11 +43,10 @@ class DashboardActivity : BaseActivity(), MviView<DashboardIntent, DashboardView
 
     override fun render(state: DashboardViewState) {
         with(state) {
-            if (isLoading) {
-                progressBar.visibility = View.VISIBLE
-            } else {
-                progressBar.visibility = View.GONE
-            }
+            progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+
+            if (errorMessage.isNotEmpty()) toast(errorMessage)
+
             if (!posts.isEmpty()) {
                 postRecyclerView.adapter = PostAdapter(posts) { post -> openWithPost<DetailActivity>(post) }
             }
