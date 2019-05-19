@@ -1,9 +1,9 @@
 # PostsSample
-A sample project that uses MVI pattern
+This project is a sample application with MVI pattern, it is written 100% in Kotlin with Unit tests. The project that uses http://jsonplaceholder.typicode.com/ api.
 
-# Languages, libraries and tools used
-
+# Tech Stack
 * Kotlin
+* MVI
 * RxJava2
 * Dagger
 * OkHttp
