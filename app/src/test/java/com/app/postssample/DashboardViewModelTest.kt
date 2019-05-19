@@ -33,7 +33,7 @@ class DashboardViewModelTest {
     var rule: TestRule = InstantTaskExecutorRule()
 
     @Before
-    fun setUpLoginViewModel() {
+    fun setUpDashboardViewModel() {
         MockitoAnnotations.initMocks(this)
         schedulerProvider = ImmediateSchedulerProvider()
         viewModel = DashboardViewModel(DashboardActionProcessorHolder(repository, schedulerProvider))
@@ -41,8 +41,9 @@ class DashboardViewModelTest {
     }
 
     @Test
-    fun test_initial_intent() {
+    fun test_getPosts_response_success() {
         val posts = listOf<Post>()
+
         whenever(repository.getPosts()).thenReturn(
             Single.just(listOf(Post(
                 userId = 0,
@@ -70,6 +71,7 @@ class DashboardViewModelTest {
     @Test
     fun test_getPosts_response_failed() {
         whenever(repository.getPosts()).thenReturn(Single.error(Throwable("Error!")))
+
         viewModel.processIntents(Observable.just(DashboardIntent.InitialIntent))
         verify(observer).onChanged(DashboardViewState(
             isLoading = true,
@@ -77,6 +79,7 @@ class DashboardViewModelTest {
             errorMessage = "",
             posts = emptyList()
         ))
+
         verify(observer).onChanged(DashboardViewState(
             isLoading = false,
             isError = true,
