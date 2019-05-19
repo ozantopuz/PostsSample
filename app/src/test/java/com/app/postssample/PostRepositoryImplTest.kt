@@ -23,37 +23,28 @@ class PostRepositoryImplTest {
 
     @Test
     fun test_getPosts_response(){
-        //Given
         whenever(service.getPosts()).thenReturn(Single.just(postList))
 
-        //When
         repository.getPosts()
 
-        //Then
         Mockito.verify<PostService>(service).getPosts()
     }
 
     @Test
     fun test_getUsers_response(){
-        //Given
         whenever(service.getUsers()).thenReturn(Single.just(userList))
 
-        //When
         repository.getUsers()
 
-        //Then
         Mockito.verify<PostService>(service).getUsers()
     }
 
     @Test
     fun test_getComments_response(){
-        //Given
         whenever(service.getComments()).thenReturn(Single.just(commentList))
 
-        //When
         repository.getComments()
 
-        //Then
         Mockito.verify<PostService>(service).getComments()
     }
 
