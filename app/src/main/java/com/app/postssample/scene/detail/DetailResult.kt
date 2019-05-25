@@ -11,7 +11,7 @@ sealed class DetailResult : MviResult {
 
         data class Failure(val errorMessage: String) : LoadDetailResult()
 
-        object InFlight : LoadDetailResult()
+        object Loading : LoadDetailResult()
     }
 
     sealed class LoadCommentResult : DetailResult() {
@@ -20,6 +20,6 @@ sealed class DetailResult : MviResult {
 
         data class Failure(val errorMessage: String) : LoadCommentResult()
 
-        object InFlight : LoadCommentResult()
+        object Loading : LoadCommentResult()
     }
 }

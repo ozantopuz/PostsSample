@@ -10,7 +10,7 @@ sealed class DashboardResult : MviResult {
 
         data class Failure(val errorMessage: String) : LoadDashboardResult()
 
-        object InFlight : LoadDashboardResult()
+        object Loading : LoadDashboardResult()
     }
 
     data class ClickResult(val post: Post) : DashboardResult()

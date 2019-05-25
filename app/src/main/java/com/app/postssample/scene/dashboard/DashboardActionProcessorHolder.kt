@@ -1,14 +1,14 @@
 package com.app.postssample.scene.dashboard
 
 import com.app.postssample.core.mvi.MviActionProcessorHolder
-import com.app.postssample.core.rx.BaseSchedulerProvider
+import com.app.postssample.core.rx.SchedulerProvider
 import com.app.postssample.data.repository.PostRepository
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import javax.inject.Inject
 
 class DashboardActionProcessorHolder @Inject constructor(private val repository: PostRepository,
-                                                    private val schedulerProvider: BaseSchedulerProvider
+                                                    private val schedulerProvider: SchedulerProvider
 ) : MviActionProcessorHolder<DashboardAction, DashboardResult> {
     override fun transformFromAction(): ObservableTransformer<DashboardAction, DashboardResult> {
         return ObservableTransformer { action ->
@@ -41,7 +41,7 @@ class DashboardActionProcessorHolder @Inject constructor(private val repository:
                     }
                     .subscribeOn(schedulerProvider.io())
                     .observeOn(schedulerProvider.ui())
-                    .startWith(DashboardResult.LoadDashboardResult.InFlight)
+                    .startWith(DashboardResult.LoadDashboardResult.Loading)
             }
         }
 

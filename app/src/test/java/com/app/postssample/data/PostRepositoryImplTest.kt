@@ -1,4 +1,4 @@
-package com.app.postssample
+package com.app.postssample.data
 
 import com.app.postssample.data.entity.*
 import com.app.postssample.data.repository.PostRepositoryImpl

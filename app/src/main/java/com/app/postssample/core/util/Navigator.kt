@@ -7,8 +7,6 @@ import com.app.postssample.data.entity.Post
 
 object Navigator{
 
-    inline fun <reified T : Activity> Context.open() = startActivity(Intent(this, T::class.java))
-
     inline fun <reified T : Activity> Context.openWithPost(post : Post) {
         val intent = Intent(this, T::class.java)
         intent.putExtra("post", post)

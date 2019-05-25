@@ -48,7 +48,7 @@ class DetailViewModel(private val detailActionProcessorHolder: DetailActionProce
                         is DetailResult.LoadDetailResult.Failure -> {
                             previousState.copy(isLoading = false, isError = true, errorMessage = result.errorMessage)
                         }
-                        is DetailResult.LoadDetailResult.InFlight -> {
+                        is DetailResult.LoadDetailResult.Loading -> {
                             previousState.copy(isLoading = true, isError = false, errorMessage = "")
                         }
                     }
@@ -62,7 +62,7 @@ class DetailViewModel(private val detailActionProcessorHolder: DetailActionProce
                         is DetailResult.LoadCommentResult.Failure -> {
                             previousState.copy(isLoading = false, isError = true, errorMessage = result.errorMessage)
                         }
-                        is DetailResult.LoadCommentResult.InFlight -> {
+                        is DetailResult.LoadCommentResult.Loading -> {
                             previousState.copy(isLoading = true, isError = false, errorMessage = "")
                         }
                     }

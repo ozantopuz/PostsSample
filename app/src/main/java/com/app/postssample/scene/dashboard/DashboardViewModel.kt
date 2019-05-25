@@ -48,7 +48,7 @@ class DashboardViewModel(private val dashboardActionProcessorHolder: DashboardAc
                         is DashboardResult.LoadDashboardResult.Failure -> {
                             previousState.copy(isLoading = false, isError = true, errorMessage = result.errorMessage)
                         }
-                        is DashboardResult.LoadDashboardResult.InFlight -> {
+                        is DashboardResult.LoadDashboardResult.Loading -> {
                             previousState.copy(isLoading = true, isError = false, errorMessage = "")
                         }
                     }

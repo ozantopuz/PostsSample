@@ -1,14 +1,12 @@
 package com.app.postssample.core.rx
 
 import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
-class SchedulerProvider : BaseSchedulerProvider {
+interface SchedulerProvider {
 
-    override fun computation(): Scheduler = Schedulers.computation()
+    fun computation(): Scheduler
 
-    override fun io(): Scheduler = Schedulers.io()
+    fun io(): Scheduler
 
-    override fun ui(): Scheduler = AndroidSchedulers.mainThread()
+    fun ui(): Scheduler
 }

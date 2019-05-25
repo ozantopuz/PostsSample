@@ -14,7 +14,7 @@ abstract class BaseActivity: DaggerAppCompatActivity(), HasActivityInjector {
     @Inject
     lateinit var injector: DispatchingAndroidInjector<Activity>
 
-    val disposable = CompositeDisposable()
+    private val disposable = CompositeDisposable()
 
     override fun activityInjector(): AndroidInjector<Activity> {
         return injector

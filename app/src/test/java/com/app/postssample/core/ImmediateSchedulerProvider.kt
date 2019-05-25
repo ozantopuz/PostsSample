@@ -1,9 +1,10 @@
-package com.app.postssample.core.rx
+package com.app.postssample.core
 
+import com.app.postssample.core.rx.SchedulerProvider
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
-class ImmediateSchedulerProvider : BaseSchedulerProvider {
+class ImmediateSchedulerProvider : SchedulerProvider {
     override fun computation(): Scheduler = Schedulers.trampoline()
 
     override fun io(): Scheduler = Schedulers.trampoline()

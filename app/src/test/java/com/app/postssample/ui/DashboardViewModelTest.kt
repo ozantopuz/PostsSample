@@ -1,9 +1,9 @@
-package com.app.postssample
+package com.app.postssample.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.app.postssample.core.rx.BaseSchedulerProvider
-import com.app.postssample.core.rx.ImmediateSchedulerProvider
+import com.app.postssample.core.ImmediateSchedulerProvider
+import com.app.postssample.core.rx.SchedulerProvider
 import com.app.postssample.data.entity.Post
 import com.app.postssample.data.repository.PostRepository
 import com.app.postssample.scene.dashboard.DashboardActionProcessorHolder
@@ -24,7 +24,7 @@ import org.mockito.MockitoAnnotations
 class DashboardViewModelTest {
     @Mock
     private lateinit var repository: PostRepository
-    private lateinit var schedulerProvider: BaseSchedulerProvider
+    private lateinit var schedulerProvider: SchedulerProvider
     private lateinit var viewModel: DashboardViewModel
     @Mock
     lateinit var observer: Observer<DashboardViewState>

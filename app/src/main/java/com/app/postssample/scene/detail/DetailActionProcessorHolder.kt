@@ -1,14 +1,14 @@
 package com.app.postssample.scene.detail
 
 import com.app.postssample.core.mvi.MviActionProcessorHolder
-import com.app.postssample.core.rx.BaseSchedulerProvider
+import com.app.postssample.core.rx.SchedulerProvider
 import com.app.postssample.data.repository.PostRepository
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import javax.inject.Inject
 
 class DetailActionProcessorHolder @Inject constructor(private val repository: PostRepository,
-                                                      private val schedulerProvider: BaseSchedulerProvider
+                                                      private val schedulerProvider: SchedulerProvider
 ) : MviActionProcessorHolder<DetailAction, DetailResult> {
     
     override fun transformFromAction(): ObservableTransformer<DetailAction, DetailResult> {
@@ -32,7 +32,7 @@ class DetailActionProcessorHolder @Inject constructor(private val repository: Po
                     .onErrorReturn { t -> DetailResult.LoadDetailResult.Failure(t.localizedMessage) }
                     .subscribeOn(schedulerProvider.io())
                     .observeOn(schedulerProvider.ui())
-                    .startWith(DetailResult.LoadDetailResult.InFlight)
+                    .startWith(DetailResult.LoadDetailResult.Loading)
             }
         }
 
@@ -48,7 +48,7 @@ class DetailActionProcessorHolder @Inject constructor(private val repository: Po
                     .onErrorReturn { t -> DetailResult.LoadCommentResult.Failure(t.localizedMessage) }
                     .subscribeOn(schedulerProvider.io())
                     .observeOn(schedulerProvider.ui())
-                    .startWith(DetailResult.LoadCommentResult.InFlight)
+                    .startWith(DetailResult.LoadCommentResult.Loading)
             }
         }
 

@@ -1,9 +1,9 @@
-package com.app.postssample
+package com.app.postssample.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.app.postssample.core.rx.BaseSchedulerProvider
-import com.app.postssample.core.rx.ImmediateSchedulerProvider
+import com.app.postssample.core.rx.SchedulerProvider
+import com.app.postssample.core.ImmediateSchedulerProvider
 import com.app.postssample.data.entity.Address
 import com.app.postssample.data.entity.Comments
 import com.app.postssample.data.entity.Company
@@ -27,7 +27,7 @@ import org.mockito.MockitoAnnotations
 class DetailViewModelTest {
     @Mock
     private lateinit var repository: PostRepository
-    private lateinit var schedulerProvider: BaseSchedulerProvider
+    private lateinit var schedulerProvider: SchedulerProvider
     private lateinit var viewModel: DetailViewModel
     @Mock
     lateinit var observer: Observer<DetailViewState>
