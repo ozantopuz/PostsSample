@@ -3,7 +3,7 @@ package com.app.postssample.ui
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.app.postssample.core.rx.SchedulerProvider
-import com.app.postssample.core.ImmediateSchedulerProvider
+import com.app.postssample.core.TestSchedulers
 import com.app.postssample.data.entity.Address
 import com.app.postssample.data.entity.Comments
 import com.app.postssample.data.entity.Company
@@ -38,7 +38,7 @@ class DetailViewModelTest {
     @Before
     fun setUpDetailViewModel() {
         MockitoAnnotations.initMocks(this)
-        schedulerProvider = ImmediateSchedulerProvider()
+        schedulerProvider = TestSchedulers()
         viewModel = DetailViewModel(DetailActionProcessorHolder(repository, schedulerProvider))
         viewModel.states().observeForever(observer)
     }

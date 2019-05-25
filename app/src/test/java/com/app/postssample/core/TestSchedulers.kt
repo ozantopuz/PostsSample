@@ -4,7 +4,7 @@ import com.app.postssample.core.rx.SchedulerProvider
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
 
-class ImmediateSchedulerProvider : SchedulerProvider {
+class TestSchedulers : SchedulerProvider {
     override fun computation(): Scheduler = Schedulers.trampoline()
 
     override fun io(): Scheduler = Schedulers.trampoline()

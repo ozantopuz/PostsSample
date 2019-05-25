@@ -2,7 +2,7 @@ package com.app.postssample.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.app.postssample.core.ImmediateSchedulerProvider
+import com.app.postssample.core.TestSchedulers
 import com.app.postssample.core.rx.SchedulerProvider
 import com.app.postssample.data.entity.Post
 import com.app.postssample.data.repository.PostRepository
@@ -35,7 +35,7 @@ class DashboardViewModelTest {
     @Before
     fun setUpDashboardViewModel() {
         MockitoAnnotations.initMocks(this)
-        schedulerProvider = ImmediateSchedulerProvider()
+        schedulerProvider = TestSchedulers()
         viewModel = DashboardViewModel(DashboardActionProcessorHolder(repository, schedulerProvider))
         viewModel.states().observeForever(observer)
     }
